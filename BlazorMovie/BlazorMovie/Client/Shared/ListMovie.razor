@@ -1,0 +1,26 @@
+﻿@if(Movies == null)
+{
+    @if (ChildContent == null)
+    {
+        <textarea>No hay peliculas</textarea>
+    }
+    else
+    {
+        @ChildContent
+    }
+}
+else if(Movies.Count == 0)
+{
+    <textarea> No hay registros para mostrar </textarea>
+}
+
+@code {
+    [Parameter]
+    public List<Movie> Movies { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    bool ViewButtons = true;
+
+}

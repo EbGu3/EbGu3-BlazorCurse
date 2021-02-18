@@ -1,7 +1,19 @@
 ﻿@page "/"
+<div>
+    <h3>Movies</h3>
+    <ListMovie Movies="GetMovies()">
+    </ListMovie>
+</div>
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+@code{
+    private List<Movie> GetMovies()
+    {
+        return null;
+        //return new List<Movie>()
+        //{
+        //    new Movie(){Title = "Spiderman", LaunchDate = new DateTime(2019, 7,2)},
+        //    new Movie(){Title = "Moana", LaunchDate = new DateTime(2019, 7,2)},
+        //    new Movie(){Title = "Stich", LaunchDate = new DateTime(2019, 7,2)}
+        //};
+    }
+}
