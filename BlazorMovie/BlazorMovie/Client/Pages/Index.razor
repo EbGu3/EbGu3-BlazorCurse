@@ -1,20 +1,28 @@
 ﻿@page "/"
 <div>
     <h3>Movies</h3>
-
-    <h3>No exist Movies</h3>
-    <ListMovie Movies="GetMovies()"> </ListMovie>
+    <ListMovie Movies="ListMovies"> </ListMovie>
 </div>
 
-@code{
-    private List<Movie> GetMovies()
-    {
+<button @onclick="AddMovie">Add</button>
 
-        return new List<Movie>()
+@code{
+    private List<Movie> ListMovies;
+    protected override void OnInitialized()
+    {
+        ListMovies = new List<Movie>()
         {
             new Movie(){Title = "Spiderman", LaunchDate = new DateTime(2019, 7,2)},
             new Movie(){Title = "Moana", LaunchDate = new DateTime(2019, 7,2)},
             new Movie(){Title = "Stich", LaunchDate = new DateTime(2019, 7,2)}
         };
     }
+
+    void AddMovie()
+    {
+        ListMovies.Add(
+            new Movie() { Title = "Totad", LaunchDate = new DateTime(2019, 7, 2) }
+        ); 
+    }
+}
 }
