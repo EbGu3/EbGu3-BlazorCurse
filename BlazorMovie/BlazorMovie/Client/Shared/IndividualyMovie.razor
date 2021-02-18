@@ -1,5 +1,19 @@
-﻿<h3>IndividualyMovie</h3>
+﻿<div>
+    <p>Titulo: <b>@_Movie.Title</b></p>
+    <p>Fecha Lanzamiento: <b>@_Movie.LaunchDate.ToString("dd MMM yyyy")</b></p>
+    @if (ViewButton)
+     {
+        <div>
+            <button @onclick="@(() => EliminateMovie.InvokeAsync(_Movie))">Borrar</button>
+        </div>
+     }
+</div>
 
 @code {
 
+    [Parameter] public Movie _Movie { get; set; }
+
+    [Parameter] public bool ViewButton { get; set; } = false;
+
+    [Parameter] public EventCallback<Movie> EliminateMovie { get; set; }
 }

@@ -1,37 +1,23 @@
-﻿@if (Movies == null)
-{
-    @if (Load == null)
-    {
-        <textarea>Cargando la data</textarea>
-    }
-    else
-    {
-        @Load
-    }
-}
-else if (Movies.Count == 0)
-{
-    @if (NotExistRegister == null)
-    {
-        <textarea>No hay registros</textarea>
-    }
-    else
-    {
-        @NotExistRegister
-    }
-}
+﻿<input type="checkbox" @bind="ViewButtons">
+<br/>
+<GenericList List="Movies">
+    <ExistRegister Context="movie">
+        <IndividualyMovie _Movie="movie" EliminateMovie="EliminateMovie"
+                          ViewButton="ViewButtons"
+                          ></IndividualyMovie>
+    </ExistRegister>
+</GenericList>
 
 @code {
     [Parameter]
     public List<Movie> Movies { get; set; }
 
-    [Parameter]
-    public RenderFragment Load { get; set; }
-
-    [Parameter]
-    public RenderFragment NotExistRegister { get; set; }
-
-
     bool ViewButtons = true;
+
+    void EliminateMovie(Movie movie)
+    {
+        Movies.Remove(movie);
+        Console.WriteLine($"Se elimino la pelicula:");
+    }
 
 }

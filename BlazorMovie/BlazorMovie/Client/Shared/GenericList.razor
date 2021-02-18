@@ -1,0 +1,47 @@
+﻿@typeparam Titem
+
+@if (List == null)
+{
+    @if (Load == null)
+    {
+        <img src="https://pa1.narvii.com/6707/510b0daee67fbc091f14b9d8ef40aeb6c0d4dc7d_hq.gif" />
+        <text>Cargando la data</text>
+    }
+    else
+    {
+        @Load
+    }
+}
+else if (List.Count == 0)
+{
+    @if (NotExistRegister == null)
+    {
+        <text>No hay registros</text>
+    }
+    else
+    {
+        @NotExistRegister
+    }
+}
+else
+{
+    foreach (var item in List)
+    {
+        @ExistRegister(item)
+    }
+}
+
+@code {
+    [Parameter]
+    public RenderFragment Load { get; set; }
+
+    [Parameter]
+    public RenderFragment NotExistRegister { get; set; }
+
+    [Parameter]
+    public RenderFragment<Titem> ExistRegister { get; set; }
+
+    [Parameter]
+    public List<Titem> List { get; set; }
+
+}

@@ -1,29 +1,20 @@
 ﻿@page "/"
 <div>
     <h3>Movies</h3>
-    <ListMovie>
-        <Load>
-            <img src="https://pa1.narvii.com/6707/510b0daee67fbc091f14b9d8ef40aeb6c0d4dc7d_hq.gif" />
-        </Load>
-    </ListMovie>
 
     <h3>No exist Movies</h3>
-    <ListMovie Movies="GetMovies()">
-        <NotExistRegister>
-            <text >No hay registros</text>
-        </NotExistRegister>
-    </ListMovie>
+    <ListMovie Movies="GetMovies()"> </ListMovie>
 </div>
 
 @code{
     private List<Movie> GetMovies()
     {
-        return new List<Movie>();
-        //return new List<Movie>()
-        //{
-        //    new Movie(){Title = "Spiderman", LaunchDate = new DateTime(2019, 7,2)},
-        //    new Movie(){Title = "Moana", LaunchDate = new DateTime(2019, 7,2)},
-        //    new Movie(){Title = "Stich", LaunchDate = new DateTime(2019, 7,2)}
-        //};
+
+        return new List<Movie>()
+        {
+            new Movie(){Title = "Spiderman", LaunchDate = new DateTime(2019, 7,2)},
+            new Movie(){Title = "Moana", LaunchDate = new DateTime(2019, 7,2)},
+            new Movie(){Title = "Stich", LaunchDate = new DateTime(2019, 7,2)}
+        };
     }
 }
