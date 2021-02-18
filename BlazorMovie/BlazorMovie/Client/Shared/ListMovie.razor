@@ -1,17 +1,24 @@
-﻿@if(Movies == null)
+﻿@if (Movies == null)
 {
-    @if (ChildContent == null)
+    @if (Load == null)
     {
-        <textarea>No hay peliculas</textarea>
+        <textarea>Cargando la data</textarea>
     }
     else
     {
-        @ChildContent
+        @Load
     }
 }
-else if(Movies.Count == 0)
+else if (Movies.Count == 0)
 {
-    <textarea> No hay registros para mostrar </textarea>
+    @if (NotExistRegister == null)
+    {
+        <textarea>No hay registros</textarea>
+    }
+    else
+    {
+        @NotExistRegister
+    }
 }
 
 @code {
@@ -19,7 +26,11 @@ else if(Movies.Count == 0)
     public List<Movie> Movies { get; set; }
 
     [Parameter]
-    public RenderFragment ChildContent { get; set; }
+    public RenderFragment Load { get; set; }
+
+    [Parameter]
+    public RenderFragment NotExistRegister { get; set; }
+
 
     bool ViewButtons = true;
 
