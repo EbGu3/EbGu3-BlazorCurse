@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-
+using BlazorMovie.Client.Servicio; 
 namespace BlazorMovie.Client
 {
     public class Program
@@ -18,8 +18,15 @@ namespace BlazorMovie.Client
             builder.RootComponents.Add<App>("#app");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            ConfigureService(builder.Services);
 
             await builder.Build().RunAsync();
+        }
+
+        private static void ConfigureService(IServiceCollection services)
+        {
+            services.AddSingleton<ServiceSingleton>();
+            services.AddTransient<ServiceTransient>();
         }
     }
 }
