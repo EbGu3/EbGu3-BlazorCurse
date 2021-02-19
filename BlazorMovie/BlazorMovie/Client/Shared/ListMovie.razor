@@ -10,7 +10,14 @@
     </ExistRegister>
 </GenericList>
 
+<Confirmation @ref="confirmation" onConfirm="EliminateMovieConfirmation" onCancel="OnCancelConfirmation">
+    <div>Desea borrar?</div>
+</Confirmation>
 @code {
+
+    Confirmation confirmation;
+    Movie ToModifyMovie;
+
     [Parameter]
     public List<Movie> Movies { get; set; }
 
@@ -39,13 +46,34 @@
 
     async Task EliminateMovie(Movie movie)
     {
-        //confirm es una funcion predeterminada 
-        var confirmado = await js.Confirm($"Desea borrar la pelicula: {movie.Title}?");
-        var Log = js.Log();
-        if (confirmado)
-        {
-            Movies.Remove(movie);
-            Console.WriteLine($"Se elimino la pelicula:");
-        }
+        ToModifyMovie = movie;
+        confirmation.Show();
     }
+
+    void EliminateMovieConfirmation()
+    {
+        Movies.Remove(ToModifyMovie);
+        confirmation.Hide();
+        ToModifyMovie = null;
+    }
+
+    void OnCancelConfirmation()
+    {
+        confirmation.Hide();
+        ToModifyMovie = null;
+    }
+
+
+    //Confirmacion con JavaScript
+    //async Task EliminateMovie(Movie movie)
+    //{
+    //    //confirm es una funcion predeterminada 
+    //    var confirmado = await js.Confirm($"Desea borrar la pelicula: {movie.Title}?");
+    //    var Log = js.Log();
+    //    if (confirmado)
+    //    {
+    //        Movies.Remove(movie);
+    //        Console.WriteLine($"Se elimino la pelicula:");
+    //    }
+    //}
 }

@@ -9,8 +9,9 @@
 
 @code{
     private List<Movie> ListMovies;
+    
     protected override void OnInitialized()
-    {
+    {   
         ListMovies = repository.GetMovies();
     }
 
