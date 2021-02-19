@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static BlazorMovie.Client.Shared.MainLayout;
 
 namespace BlazorMovie.Client.Pages
 {
@@ -19,6 +20,9 @@ namespace BlazorMovie.Client.Pages
         [Inject]
         protected IJSRuntime JS { get; set; }
 
+        [CascadingParameter]
+        protected AppsSate appState { get; set; }
+        
         //Guardar la referencia de Counter.js
         IJSObjectReference modulo;
 
