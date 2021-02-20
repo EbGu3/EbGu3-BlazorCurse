@@ -1,0 +1,33 @@
+﻿<input type="text" @bind="Path" />
+<button @onclick="@(() => ViewImage(Path))">Enviar</button>
+
+@if (Result == "NoEncontro")
+{
+    <h3 style="color: red">No se encontro la direccion URL</h3>
+    <img src="Interrogacion.png" class="imagen" />
+
+}
+else if (string.IsNullOrEmpty(Path))
+{
+    <h3 style="color: blue">Ingrese el URL</h3>
+    <img src="wait.gif" class="imagen" />
+}
+else if (Result == "Encontro")
+{
+    <h3 style="color: green">Encontro la Imagen</h3>
+    <img src="@Path" class="imagen" />
+}
+
+@code {
+
+    string Path;
+    string Result;
+
+    string ViewImage(string path)
+    {
+        Path = path;
+        if (Path == null) { return Result = "NoEncontro"; }
+        return Result = "Encontro";
+    }
+
+}
