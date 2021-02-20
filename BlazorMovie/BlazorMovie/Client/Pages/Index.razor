@@ -1,17 +1,12 @@
 ﻿@page "/"
 @inject IRepository<Movie> repository
 
-<p style="color: @appState.Color">El valor de singleton: es</p>
 <div>
     <h1>Movies</h1>
     <ListMovie Movies="ListMovies"> </ListMovie>
 </div>
 
-<button @onclick="AddMovie">Add</button>
-
 @code{
-    [CascadingParameter]
-    private AppsSate appState { get; set; }
     
     private List<Movie> ListMovies;
 
@@ -20,11 +15,5 @@
         ListMovies = repository.GetMovies();
     }
 
-    void AddMovie()
-    {
-        ListMovies.Add(
-            new Movie() { Title = "Totad", LaunchDate = new DateTime(2019, 7, 2) }
-        );
-    }
 }
 

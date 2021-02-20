@@ -1,79 +1,28 @@
 ﻿@inject IJSRuntime js
 
-<input type="checkbox" @bind="ViewButtons">
-<br/>
-<GenericList List="Movies">
-    <ExistRegister Context="movie">
-        <IndividualyMovie _Movie="movie" EliminateMovie="EliminateMovie"
-                          ViewButton="ViewButtons"
-                          ></IndividualyMovie>
-    </ExistRegister>
-</GenericList>
+<div style="display: flex; flex-wrap: wrap; align-items: center;">
+    <GenericList List="Movies">
+        <ExistRegister Context="movie">
+            <IndividualyMovie _Movie="movie" EliminateMovie="EliminateMovie"></IndividualyMovie>
+        </ExistRegister>
+    </GenericList>
+</div>
 
-<Confirmation @ref="confirmation" onConfirm="EliminateMovieConfirmation" onCancel="OnCancelConfirmation">
-    <div>Desea borrar?</div>
-</Confirmation>
 @code {
-
-    Confirmation confirmation;
-    Movie ToModifyMovie;
 
     [Parameter]
     public List<Movie> Movies { get; set; }
 
-    protected override void OnInitialized()
-    {
-        Console.WriteLine($"OnInitializaed: Cantidad de Peliculas: {Movies.Count}");
-    }
-
-    protected override void OnParametersSet()
-    {
-        Console.WriteLine($"OnParametersSet: : Cantidad de Peliculas: {Movies.Count}");
-    }
-
-    protected override void OnAfterRender(bool firstRender)
-    {
-        Console.WriteLine($"OnAfterRender: Primera Vez: {firstRender}");
-    }
-
-    protected override bool ShouldRender()
-    {
-        Console.WriteLine("ShouldRender");
-        return true;
-    }
-
-    bool ViewButtons = true;
-
-    void EliminateMovie(Movie movie)
-    {
-        ToModifyMovie = movie;
-        confirmation.Show();
-    }
-
-    void EliminateMovieConfirmation()
-    {
-        Movies.Remove(ToModifyMovie);
-        confirmation.Hide();
-        ToModifyMovie = null;
-    }
-
-    void OnCancelConfirmation()
-    {
-        confirmation.Hide();
-        ToModifyMovie = null;
-    }
-
-
     //Confirmacion con JavaScript
-    //async Task EliminateMovie(Movie movie)
-    //{
-    //    //confirm es una funcion predeterminada 
-    //    var confirmado = await js.Confirm($"Desea borrar la pelicula: {movie.Title}?");
-    //    var Log = js.Log();
-    //    if (confirmado)
-    //    {
-    //        Movies.Remove(movie);
-    //        Console.WriteLine($"Se elimino la pelicula:");
-    //    }
-    //}
+    async Task EliminateMovie(Movie movie)
+    {
+        //confirm es una funcion predeterminada 
+        var confirmado = await js.Confirm($"Desea borrar la pelicula: {movie.Title}?");
+        var Log = js.Log();
+        if (confirmado)
+        {
+            Movies.Remove(movie);
+            Console.WriteLine($"Se elimino la pelicula:");
+        }
+    }
 }

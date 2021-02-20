@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using BlazorMovie.Client.Servicio;
 using BlazorMovie.Client.Data;
 using BlazorMovie.Shared.Entity;
 
@@ -28,8 +27,6 @@ namespace BlazorMovie.Client
 
         private static void ConfigureService(IServiceCollection services)
         {
-            services.AddSingleton<ServiceSingleton>();
-            services.AddTransient<ServiceTransient>();
             //Para configurar un servicio con interfaz
             services.AddSingleton<IRepository<Movie>, Repository>();
         }

@@ -11,19 +11,8 @@
         </div>
 
         <div class="content px-4">
-            <CascadingValue Value="@appState">
                     @Body
-            </CascadingValue>
         </div>
     </div>
 </div>
 
-@code {
-    AppsSate appState = new AppsSate();
-
-    public class AppsSate
-    {
-        public string Color = "red";
-        public string Size = "12px";
-    }
-}
