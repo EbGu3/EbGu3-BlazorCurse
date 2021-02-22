@@ -44,6 +44,22 @@
                                NotSelected="NotSeleted"></MultipleSelection>
         </div>
     </div>
+    <div class="form-group">
+        <label>Actores:</label>
+        <div>
+            <SelectedMultipleTypehead Context="persona"
+                                      SearchMethod="BuscarActores" 
+                                      ElementosSeleccionados="ActoresSelecionados">
+                <MyListTemplate>
+                    @persona.Name
+                </MyListTemplate>
+                <MyResultTemplate>
+                    <img style="width: 50px" src="@persona.Photo" /> 
+                    @persona.Name
+                </MyResultTemplate>
+            </SelectedMultipleTypehead>
+        </div>
+    </div>
     <button type="submit" class="btn btn-success">Salvar Pelicula</button>
 </EditForm>
 @code {
@@ -58,6 +74,9 @@
 
     [Parameter]
     public List<Gender> NotSeletedGender { get; set; } = new List<Gender>();
+
+    [Parameter]
+    public List<Person> ActoresSelecionados { get; set; } = new List<Person>();
 
     private List<MultipleSelectModel> Seleted { get; set; } = new List<MultipleSelectModel>();
     private List<MultipleSelectModel> NotSeleted { get; set; } = new List<MultipleSelectModel>();
@@ -79,5 +98,14 @@
     private void SelectedImagen(string imageBase64)
     {
         _Movie.Poster = imageBase64;
+    }
+
+    private async Task<IEnumerable<Person>> BuscarActores(string searchText)
+    {
+        return new List<Person>()
+        {
+            new Person(){Id = 1, Name = "Tom Holland", Photo = "https://m.media-amazon.com/images/M/MV5BNzZiNTEyNTItYjNhMS00YjI2LWIwMWQtZmYwYTRlNjMyZTJjXkEyXkFqcGdeQXVyMTExNzQzMDE0._V1_UX214_CR0,0,214,317_AL_.jpg"},
+            new Person(){Id = 2, Name = "Tom Hanks", Photo = "https://m.media-amazon.com/images/M/MV5BMTQ2MjMwNDA3Nl5BMl5BanBnXkFtZTcwMTA2NDY3NQ@@._V1_UY317_CR2,0,214,317_AL_.jpg"}
+        };
     }
 }
