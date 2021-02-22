@@ -1,8 +1,34 @@
-﻿@page "/genero/crear/{GeneroId:int}"
+﻿@page "/genero/crear/{GenderId:int}"
+@page "/genero/crear"
 
 <h3>CreateGender</h3>
 
+<EditForm Model="_Gender" OnSubmit="NewGender">
+    <div class="form-group">
+        <label>Nombre:</label>
+        <div>
+            <InputText class="form-group" @bind-Value="@_Gender.Name"></InputText>
+        </div>
+    </div>
+    <button class="btn btn-success" type="submit">Guardar Cambios</button>
+
+</EditForm>
+
 @code {
     [Parameter]
-    public int GeneroId { get; set; }
+    public int GenderId { get; set; }
+
+    private Gender _Gender;
+
+    protected override void OnInitialized()
+    {
+        _Gender = new Gender();
+    }
+
+    private void NewGender()
+    {
+        Console.WriteLine("Ejecutando método Crear");
+        Console.WriteLine($"Nombre del género: {_Gender.Name}");
+    }
+
 }

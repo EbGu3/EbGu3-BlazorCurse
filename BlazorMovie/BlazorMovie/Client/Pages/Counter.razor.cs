@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using static BlazorMovie.Client.Shared.MainLayout;
+using MathNet.Numerics.Statistics;
 
 namespace BlazorMovie.Client.Pages
 {
@@ -24,9 +25,13 @@ namespace BlazorMovie.Client.Pages
         [JSInvokable]
         public async Task IncrementCount()
         {
+            var array = new double[] { 1, 2, 3, 4, 5 };
+            var max = array.Max();
+            var min = array.Min();
+            
            //hasta este momento se descargara el archivo Counter.js
             modulo = await JS.InvokeAsync<IJSObjectReference>("import", "./js/Counter.js");
-            await modulo.InvokeVoidAsync("ViewAlert", "Hola mundo");
+            await modulo.InvokeVoidAsync("ViewAlert", $"El max es {max} y  el min es {min}");  
             currentCount++;
             currentCountStatic++;
             await JS.InvokeVoidAsync("pruebaPuntoNetStatic");
