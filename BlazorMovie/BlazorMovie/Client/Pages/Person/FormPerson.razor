@@ -17,8 +17,12 @@
     <div class="form-group">
         <InputImg Label="Photo" SelectedImage="SelectedImagen" ImagenURL="@_ImagenURL"></InputImg>
     </div>
-    <div class="form-group">
+    <div class="form-group form-markdown">
+        <InputMarkdown @bind-Value="@Person.Biografia" 
+                       For="@(() => Person.Biografia)"
+                       Label="Biografia">
 
+        </InputMarkdown>
     </div>
     <button class="btn btn-success" type="submit">Guardar Cambios</button>
 </EditForm>
