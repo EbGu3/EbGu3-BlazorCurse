@@ -1,6 +1,8 @@
-﻿@page "/genero/crear"
+﻿@page "/genero/crear/{GeneroId:int}"
+
 <h3>CreateGender</h3>
 
 @code {
-
+    [Parameter]
+    public int GeneroId { get; set; }
 }

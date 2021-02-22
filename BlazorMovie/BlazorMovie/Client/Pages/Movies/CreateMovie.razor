@@ -1,6 +1,16 @@
-﻿@page "/peliculas/crear" 
+﻿@page "/pelicula/crear"
+@inject NavigationManager navigationManager
 
 <h3>Crear Pelicula</h3>
+<button @onclick="Crear">Salvar Pelicula</button>
+
 @code {
-    
+    void Crear()
+    {
+        //Me duvuelve el dominio en el que estabamos
+        Console.WriteLine(navigationManager.Uri);
+        navigationManager.NavigateTo("pelicula");
+    }
 }
+
+ 
