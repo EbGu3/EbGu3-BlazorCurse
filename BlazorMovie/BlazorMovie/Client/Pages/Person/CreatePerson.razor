@@ -1,5 +1,18 @@
 ﻿@page "/persona/crear"
 
-@code {
+<h3>Crear Persona</h3>
 
+<FormPerson OnValidSubmit="NewPerson" Person="Person"></FormPerson>
+@code {
+    private Person Person;
+
+    protected override void OnInitialized()
+    {
+        Person = new Person();
+    }
+
+    void NewPerson()
+    {
+        Console.WriteLine("Crear Persona");
+    }
 }

@@ -1,0 +1,33 @@
+﻿<EditForm Model="Person" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator></DataAnnotationsValidator>
+    <div class="form-group">
+        <label>Nombre:</label>
+        <div>
+            <InputText class="form-control" @bind-Value="@Person.Name"></InputText>
+            <ValidationMessage For="@(()=> Person.Name)"></ValidationMessage>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Fecha Nacimiento:</label>
+        <div>
+            <InputDate class="form-control" @bind-Value="@Person.DateBorn"></InputDate>
+            <ValidationMessage For="@(()=> Person.DateBorn)"></ValidationMessage>
+        </div>
+    </div>
+    <div class="form-group">
+
+    </div>
+    <div class="form-group">
+
+    </div>
+    <button class="btn btn-success" type="submit">Guardar Cambios</button>
+</EditForm>
+
+
+@code {
+    [Parameter]
+    public Person Person { get; set; }
+
+    [Parameter]
+    public EventCallback OnValidSubmit { get; set; }
+}
