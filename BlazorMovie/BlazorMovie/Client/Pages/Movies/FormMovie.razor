@@ -1,0 +1,55 @@
+﻿<EditForm Model="_Movie" OnInvalidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator></DataAnnotationsValidator>
+    <div class="form-group">
+        <label>Titulo:</label>
+        <div>
+            <InputText class="form-group" @bind-Value="@_Movie.Title"></InputText>
+            <ValidationMessage For="@(() => _Movie.Title)"></ValidationMessage>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>En Cartelera:</label>
+        <div>
+            <InputCheckbox @bind-Value="@_Movie.OnBilldBoard"></InputCheckbox>
+            <ValidationMessage For="@(() => _Movie.OnBilldBoard)"></ValidationMessage>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Trailer:</label>
+        <div>
+            <InputText class="form-group" @bind-Value="@_Movie.Trailer"></InputText>
+            <ValidationMessage For="@(() => _Movie.Trailer)"></ValidationMessage>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Fecha Lanzamiento:</label>
+        <div>
+            <InputDate class="form-group" @bind-Value="@_Movie.LaunchDate"></InputDate>
+            <ValidationMessage For="@(() => _Movie.LaunchDate)"></ValidationMessage>
+        </div>
+    </div>
+    <div class="form-group form-markdown">
+        <InputMarkdown @bind-Value="@_Movie.Summary"
+                       For="@(() => _Movie.Summary)"
+                       Label="Summary">
+
+        </InputMarkdown>
+    </div>
+    <div class="form-group">
+        <InputImg Label="Photo" SelectedImage="SelectedImagen" ImagenURL=""></InputImg>
+    </div>
+
+    <button type="submit" class="btn btn-success">Salvar Pelicula</button>
+</EditForm>
+@code {
+    [Parameter]
+    public Movie _Movie { get; set; }
+
+    [Parameter]
+    public EventCallback OnValidSubmit { get; set; }
+
+    private void SelectedImagen(string imageBase64)
+    {
+        _Movie.Poster = imageBase64;
+    }
+}

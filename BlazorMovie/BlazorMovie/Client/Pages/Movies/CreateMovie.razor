@@ -2,14 +2,21 @@
 @inject NavigationManager navigationManager
 
 <h3>Crear Pelicula</h3>
-<button @onclick="Crear">Salvar Pelicula</button>
+<FormMovie _Movie="Movie" OnValidSubmit="CreteNewMovie"></FormMovie>
 
 @code {
-    void Crear()
+    private Movie Movie;
+
+    protected override void OnInitialized()
+    {
+        Movie = new Movie();
+    }
+    
+    void CreteNewMovie()
     {
         //Me duvuelve el dominio en el que estabamos
         Console.WriteLine(navigationManager.Uri);
-        navigationManager.NavigateTo("pelicula");
+        
     }
 }
 
