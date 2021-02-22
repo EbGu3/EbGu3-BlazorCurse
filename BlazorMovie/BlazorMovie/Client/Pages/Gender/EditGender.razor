@@ -1,8 +1,23 @@
-﻿@page "/genero/editar/{GeneroId:int}"
+﻿@page "/genero/editar/{GenderId:int}"
 
-<h3>EditGender</h3>
+<h3>Editar Género</h3>
+<FormGender OnValidSubmit="ModifyGender" _Gender="_Gender"></FormGender>
 
 @code {
     [Parameter]
-    public int GeneroId { get; set; }
+    public int GenderId { get; set; }
+
+    private Gender _Gender;
+
+    protected override void OnInitialized()
+    {
+        _Gender = new Gender() { Id = GenderId, Name = " " };
+    }
+
+    private void ModifyGender()
+    {
+        Console.WriteLine("Editando el Genero");
+        Console.WriteLine($"Id: {_Gender.Id}");
+        Console.WriteLine($"Name: {_Gender.Name}");
+    }
 }

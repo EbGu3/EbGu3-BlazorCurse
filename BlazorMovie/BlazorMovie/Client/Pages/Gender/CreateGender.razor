@@ -3,16 +3,7 @@
 
 <h3>CreateGender</h3>
 
-<EditForm Model="_Gender" OnSubmit="NewGender">
-    <div class="form-group">
-        <label>Nombre:</label>
-        <div>
-            <InputText class="form-group" @bind-Value="@_Gender.Name"></InputText>
-        </div>
-    </div>
-    <button class="btn btn-success" type="submit">Guardar Cambios</button>
-
-</EditForm>
+<FormGender OnValidSubmit="NewGender" _Gender="_Gender" ></FormGender>
 
 @code {
     [Parameter]
@@ -30,5 +21,4 @@
         Console.WriteLine("Ejecutando método Crear");
         Console.WriteLine($"Nombre del género: {_Gender.Name}");
     }
-
 }
