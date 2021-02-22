@@ -2,21 +2,31 @@
 @inject NavigationManager navigationManager
 
 <h3>Crear Pelicula</h3>
-<FormMovie _Movie="Movie" OnValidSubmit="CreteNewMovie"></FormMovie>
+<FormMovie _Movie="Movie" OnValidSubmit="CreteNewMovie" 
+           NotSeletedGender="NotSelectedGender"></FormMovie>
 
 @code {
     private Movie Movie;
+    private List<Gender> NotSelectedGender = new List<Gender>();
 
     protected override void OnInitialized()
     {
         Movie = new Movie();
+
+        NotSelectedGender = new List<Gender>()
+        {
+            new Gender() {Id = 1, Name = "Comedia"},
+            new Gender() {Id = 2, Name = "Drama"},
+            new Gender() {Id = 3, Name = "Accion"},
+            new Gender() {Id = 4, Name = "Sci-fi"}
+        };
     }
-    
+
     void CreteNewMovie()
     {
         //Me duvuelve el dominio en el que estabamos
         Console.WriteLine(navigationManager.Uri);
-        
+
     }
 }
 

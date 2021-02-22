@@ -19,8 +19,8 @@ namespace BlazorMovie.Shared.Entity
         public string  Summary { get; set; }
         public bool OnBilldBoard { get; set; }
         public string Trailer { get; set; }
- 
         public string Poster { get; set; }
+        public List<GenderMovie> GenderMovies { get; set; } = new List<GenderMovie>();
         public string CutTitle
         {
             get

@@ -2,12 +2,18 @@
 
 <h3>Edit Movie</h3>
 
-<FormMovie _Movie="Movie" OnValidSubmit="ModifyMovie"></FormMovie>
+<FormMovie _Movie="Movie" OnValidSubmit="ModifyMovie" 
+           NotSeletedGender="NotSelectedGender"
+           SeletedGender="SelectedGender"></FormMovie>
 
 @code {
     [Parameter]
     public int MovieId { get; set; }
+
     Movie Movie;
+
+    private List<Gender> SelectedGender = new List<Gender>();
+    private List<Gender> NotSelectedGender = new List<Gender>();
 
     protected override void OnInitialized()
     {
@@ -16,6 +22,18 @@
             Id = MovieId,
             Title = "Defaul Title"
 
+        };
+
+        NotSelectedGender = new List<Gender>()
+        {
+            new Gender() {Id = 2, Name = "Drama"},
+            new Gender() {Id = 3, Name = "Accion"},
+            new Gender() {Id = 4, Name = "Sci-fi"}
+        };
+
+        SelectedGender = new List<Gender>()
+        {
+            new Gender() {Id = 1, Name = "Comedia"},
         };
     }
 

@@ -32,13 +32,18 @@
         <InputMarkdown @bind-Value="@_Movie.Summary"
                        For="@(() => _Movie.Summary)"
                        Label="Summary">
-
         </InputMarkdown>
     </div>
     <div class="form-group">
         <InputImg Label="Photo" SelectedImage="SelectedImagen" ImagenURL=""></InputImg>
     </div>
-
+    <div class="form-group">
+        <label>Genero:</label>
+        <div>
+            <MultipleSelection Selected="Seleted" 
+                               NotSelected="NotSeleted"></MultipleSelection>
+        </div>
+    </div>
     <button type="submit" class="btn btn-success">Salvar Pelicula</button>
 </EditForm>
 @code {
@@ -47,6 +52,29 @@
 
     [Parameter]
     public EventCallback OnValidSubmit { get; set; }
+
+    [Parameter]
+    public List<Gender> SeletedGender { get; set; } = new List<Gender>();
+
+    [Parameter]
+    public List<Gender> NotSeletedGender { get; set; } = new List<Gender>();
+
+    private List<MultipleSelectModel> Seleted { get; set; } = new List<MultipleSelectModel>();
+    private List<MultipleSelectModel> NotSeleted { get; set; } = new List<MultipleSelectModel>();
+    private string PosterTemporal;
+
+    protected override void OnInitialized()
+    {
+
+        Seleted = SeletedGender.Select(x => new MultipleSelectModel(x.Id.ToString(), x.Name)).ToList();
+        NotSeleted = NotSeletedGender.Select(x => new MultipleSelectModel(x.Id.ToString(), x.Name)).ToList();
+
+        if(!string.IsNullOrWhiteSpace(_Movie.Poster))
+        {
+            PosterTemporal = _Movie.Poster;
+            _Movie.Poster = null;
+        }
+    }
 
     private void SelectedImagen(string imageBase64)
     {
