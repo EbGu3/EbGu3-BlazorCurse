@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="form-group">
-
+        <InputImg Label="Photo" SelectedImage="SelectedImagen" ImagenURL="@_ImagenURL"></InputImg>
     </div>
     <div class="form-group">
 
@@ -30,4 +30,21 @@
 
     [Parameter]
     public EventCallback OnValidSubmit { get; set; }
+
+    string _ImagenURL;
+
+    protected override void OnInitialized()
+    {
+        if (!string.IsNullOrEmpty(Person.Photo))
+        {
+            _ImagenURL = Person.Photo;
+            Person.Photo = null;
+        }
+    }
+
+    private void SelectedImagen(string imageBase64)
+    {
+        Person.Photo = imageBase64;
+        _ImagenURL = null;
+    }
 }
